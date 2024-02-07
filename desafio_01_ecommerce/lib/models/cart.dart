@@ -4,32 +4,39 @@ import 'package:flutter_05_ecommerce/models/shoe.dart';
 class Cart extends ChangeNotifier {
   List<Shoe> shoeShop = [
     Shoe(
-        name: 'Air Max 270',
-        price: '236',
-        imagePath: "lib/images/air_max_270_react_0.png",
-        description:
-            'The forward-thinking design of his latest signature shoe.'),
+      name: 'Air Max 270',
+      price: '236',
+      imagePath: "lib/images/air_max_270_react_0.png",
+      description: 'The forward-thinking design of his latest signature shoe.',
+    ),
     Shoe(
-      name: 'Air Max',
+      name: 'Air Jordan Low',
       price: '350',
-      imagePath: 'lib/images/air_max_270_react_2.png',
+      imagePath: 'lib/images/nike8.png',
       description:
           'You\'ve got the hops and the speed-lace up in shoes that enhance the best.',
     ),
     Shoe(
-      name: 'Jordan Max',
+      name: 'Revolution 7',
       price: '400',
-      imagePath: 'lib/images/jordan_max_200_0.png',
+      imagePath: 'lib/images/nike2.png',
       description:
           'You\'ve got the hops and the speed-lace up in shoes that enhance the best.',
     ),
     Shoe(
       name: 'Air Max React',
       price: '350',
-      imagePath: 'lib/images/air_max_270_react_1.png',
+      imagePath: 'lib/images/nike1.png',
       description:
           'Step into greatness with Jordan: Elevate your style, embrace your passion, and soar above the rest.',
     ),
+    Shoe(
+      name: 'Air Jordan GS',
+      price: '800',
+      imagePath: 'lib/images/nike7.png',
+      description:
+          'The Air Jordan 1 Alternate Black Royal GS was a addition to the catalog of the American sport and lifestyle brand',
+    )
   ];
 
   List<Shoe> userCart = [];
@@ -51,5 +58,4 @@ class Cart extends ChangeNotifier {
     userCart.remove(shoe);
     notifyListeners();
   }
-
 }

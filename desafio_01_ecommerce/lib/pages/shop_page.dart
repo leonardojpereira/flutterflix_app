@@ -1,26 +1,36 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_05_ecommerce/components/shoe_tile.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
+import 'package:flutter_05_ecommerce/pages/details_page.dart';// Importe a página corretamente
 import 'package:provider/provider.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key});
+  const ShopPage({Key? key}) : super(key: key);
 
   @override
   State<ShopPage> createState() => _ShopPageState();
 }
 
 class _ShopPageState extends State<ShopPage> {
+  void navigateToProductDetails(BuildContext context, Shoe shoe) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ShoeDetailsPage(
+          shoe: shoe,
+        ),
+      ),
+    );
+  }
+
   void addShoeToCart(Shoe shoe) {
     Provider.of<Cart>(context, listen: false).addItemToCart(shoe);
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Successfuly added!'),
+        title: Text('Successfully added!'),
         content: Text('Check your cart'),
       ),
     );
@@ -35,8 +45,9 @@ class _ShopPageState extends State<ShopPage> {
             padding: EdgeInsets.all(12),
             margin: EdgeInsets.symmetric(horizontal: 25),
             decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8)),
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,13 +92,16 @@ class _ShopPageState extends State<ShopPage> {
           ),
           Expanded(
             child: ListView.builder(
-               itemCount: value.getShoeList().length, // Define o número de itens na lista
+              itemCount: value.getShoeList().length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 Shoe shoe = value.getShoeList()[index];
-                return ShoeTile(
-                  shoe: shoe,
-                  onTap: () => addShoeToCart(shoe),
+                return GestureDetector(
+                  onTap: () => navigateToProductDetails(context, shoe),
+                  child: ShoeTile(
+                    shoe: shoe,
+                    onTap: () => addShoeToCart(shoe),
+                  ),
                 );
               },
             ),
