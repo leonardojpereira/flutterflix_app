@@ -59,7 +59,7 @@ class BodyDetails extends StatelessWidget {
                           FavoriteButton(),
                         ],
                       ),
-                      ButtonAddToCartDescription()
+                      ButtonAddToCartDescription(shoe: shoe,)
                     ],
                     
                   ),
