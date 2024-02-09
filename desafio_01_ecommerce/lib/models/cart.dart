@@ -50,7 +50,13 @@ class Cart extends ChangeNotifier {
   }
 
   void addItemToCart(Shoe shoe) {
-    userCart.add(shoe);
+    int index = userCart.indexWhere((item) => item.name == shoe.name);
+    if (index != -1) {
+      userCart[index].quantity++;
+    } else {
+      shoe.quantity = 1;
+      userCart.add(shoe);
+    }
     notifyListeners();
   }
 
