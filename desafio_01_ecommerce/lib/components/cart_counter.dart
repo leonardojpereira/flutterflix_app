@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_05_ecommerce/models/shoe.dart';
 
 class CartCounter extends StatefulWidget {
-  const CartCounter({super.key});
+    final Shoe shoe;
+
+  const CartCounter({Key? key, required this.shoe}) : super(key: key);
+
 
   @override
   State<CartCounter> createState() => _CartCounterState();
@@ -9,6 +13,10 @@ class CartCounter extends StatefulWidget {
 
 class _CartCounterState extends State<CartCounter> {
   int counter = 1;
+
+    double getTotalPrice() {
+    return double.parse(widget.shoe.price) * counter;
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,6 +26,7 @@ class _CartCounterState extends State<CartCounter> {
           press: () {
             setState(() {
               if(counter > 1) {
+                widget.shoe.price;
                  counter--;
               }
               return;

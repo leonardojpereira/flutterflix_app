@@ -30,9 +30,12 @@ class _CartPageState extends State<CartPage> {
             Expanded(
               child: value.getUserCart().isEmpty
                   ? Container(
-                      child: Text('Your cart is empty.', style: TextStyle(
-                        fontSize: 20,
-                      ),),
+                      child: Text(
+                        'Your cart is empty.',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
                     )
                   : ListView.builder(
                       itemCount: value.getUserCart().length,

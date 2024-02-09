@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 class ButtonAddToCartDescription extends StatelessWidget {
   final Shoe shoe;
 
-  const ButtonAddToCartDescription({Key? key, required this.shoe}) : super(key: key);
+  const ButtonAddToCartDescription({Key? key, required this.shoe})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ButtonAddToCartDescription extends StatelessWidget {
           );
         },
         child: Container(
-          margin: EdgeInsets.only(top: 46),
+          margin: EdgeInsets.only(top: 20),
           width: 400,
           height: 60,
           decoration: BoxDecoration(
@@ -37,7 +38,7 @@ class ButtonAddToCartDescription extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Icon(
-                    Icons.shop_sharp,
+                    Icons.shopping_cart,
                     color: Colors.white,
                     size: 26,
                   ),
