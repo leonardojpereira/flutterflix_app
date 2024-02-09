@@ -17,7 +17,7 @@ class ShoeTitleWidthImage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'The Amazing Shoe',
+            'Amazing shoes',
             style: TextStyle(color: Colors.white),
           ),
           Text(

@@ -3,11 +3,16 @@ import 'package:flutter_05_ecommerce/components/body_details.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
 import 'package:flutter_05_ecommerce/pages/cart_page.dart';
 
-class ShoeDetailsPage extends StatelessWidget {
+class ShoeDetailsPage extends StatefulWidget {
   final Shoe shoe;
 
   const ShoeDetailsPage({Key? key, required this.shoe}) : super(key: key);
 
+  @override
+  State<ShoeDetailsPage> createState() => _ShoeDetailsPageState();
+}
+
+class _ShoeDetailsPageState extends State<ShoeDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +28,29 @@ class ShoeDetailsPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         actions: <Widget>[
-          IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage())), icon: Icon(Icons.shopping_cart, color: Colors.white,)),
+          InkWell(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const CartPage();
+                },
+              ),
+            ),
+            child: Icon(Icons.shopping_cart, color: Colors.white,),
+          )
+          // IconButton(
+          //     onPressed: () => Navigator.push(
+          //         context, MaterialPageRoute(builder: (context) => const CartPage())),
+          //     icon: Icon(
+          //       Icons.shopping_cart,
+          //       color: Colors.white,
+          //     )),
         ],
       ),
-      body: BodyDetails(shoe: shoe,),
+      body: BodyDetails(
+        shoe: widget.shoe,
+      ),
     );
   }
 }

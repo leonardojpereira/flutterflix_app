@@ -16,37 +16,41 @@ class CartItem extends StatefulWidget {
 class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      margin: const EdgeInsets.only(bottom: 10),
-      child: ListTile(
-        leading: GestureDetector(
-          onTap: () => _navigateToProductDetails(context, widget.shoe),
-          child: Image.asset(widget.shoe.imagePath),
-        ),
-        title: Text(
-          widget.shoe.name,
-          style: TextStyle(fontSize: 16),
-        ),
-        subtitle: Text('\$${_getTotalPrice(widget.shoe)}'),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              onPressed: () => _decrementItemCount(context),
-              icon: const Icon(Icons.remove),
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          margin: const EdgeInsets.only(bottom: 10),
+          child: ListTile(
+            leading: GestureDetector(
+              onTap: () => _navigateToProductDetails(context, widget.shoe),
+              child: Image.asset(widget.shoe.imagePath),
             ),
-            Text('${widget.shoe.quantity}'),
-            IconButton(
-              onPressed: () => _incrementItemCount(context),
-              icon: const Icon(Icons.add),
+            title: Text(
+              widget.shoe.name,
+              style: TextStyle(fontSize: 16),
             ),
-          ],
+            subtitle: Text('\$${_getTotalPrice(widget.shoe)}'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () => _decrementItemCount(context),
+                  icon: const Icon(Icons.remove),
+                ),
+                Text('${widget.shoe.quantity}'),
+                IconButton(
+                  onPressed: () => _incrementItemCount(context),
+                  icon: const Icon(Icons.add),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 

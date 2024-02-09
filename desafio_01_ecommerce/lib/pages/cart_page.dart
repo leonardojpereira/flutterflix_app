@@ -14,40 +14,50 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Cart>(
-      builder: (context, value, child) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'My Cart',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: value.getUserCart().isEmpty
-                  ? Container(
-                      child: Text(
-                        'Your cart is empty.',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: value.getUserCart().length,
-                      itemBuilder: (context, index) {
-                        Shoe individualShoe = value.getUserCart()[index];
-                        return CartItem(
-                          shoe: individualShoe,
-                        );
-                      },
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_sharp,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: Consumer<Cart>(
+        builder: (context, value, child) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 22.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'My Cart',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                if (value.getUserCart().isEmpty)
+                  Text(
+                    'Your cart is empty.',
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
+                  )
+                else
+                  Column(
+                    children: value.getUserCart().map((shoe) {
+                      return CartItem(
+                        shoe: shoe,
+                      );
+                    }).toList(),
+                  ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
