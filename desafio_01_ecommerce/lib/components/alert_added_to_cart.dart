@@ -17,7 +17,7 @@ class AlertAddedToCart extends StatelessWidget {
           Navigator.pop(context); // Fechar o AlertDialog
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CartPage()),
+            MaterialPageRoute(builder: (context) => const CartPage()),
           );
         },
       ),
