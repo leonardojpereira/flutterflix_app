@@ -15,7 +15,7 @@ class ShoeTile extends StatelessWidget {
       margin: EdgeInsets.only(left: 25),
       width: 250,
       decoration: BoxDecoration(
-          color: Colors.grey[100], borderRadius: BorderRadius.circular(12)),
+          color: Colors.white, borderRadius: BorderRadius.circular(12)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -23,11 +23,15 @@ class ShoeTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Padding(
                 padding: const EdgeInsets.only(top: 70.0),
-                child: Image.asset(shoe.imagePath, width: 200,),
+                child: Image.asset(
+                  shoe.imagePath,
+                  width: 200,
+                ),
               )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text(shoe.description, style: TextStyle(color: Colors.grey[600])),
+            child: Text(shoe.description,
+                style: TextStyle(color: Colors.grey[600])),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
@@ -38,11 +42,27 @@ class ShoeTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text(shoe.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), 
-            
-                  SizedBox(height: 5),
-            
-                  Text('\$' + shoe.price, style: TextStyle(color: Colors.grey),)],
+                    Text(
+                      shoe.name,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: [
+                        SizedBox(
+                            width: 60,
+                            child: Text(
+                              '\$' + shoe.price,
+                              style: TextStyle(color: Colors.grey),
+                            )),
+                        Text(
+                          'Size: ${shoe.size}',
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    )
+                  ],
                 ),
                 GestureDetector(
                   onTap: onTap,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_05_ecommerce/components/alert_added_to_cart.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,8 @@ import 'package:provider/provider.dart';
 class ButtonAddToCartDescription extends StatelessWidget {
   final Shoe shoe;
 
-  const ButtonAddToCartDescription({Key? key, required this.shoe}) : super(key: key);
+  const ButtonAddToCartDescription({Key? key, required this.shoe})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +18,11 @@ class ButtonAddToCartDescription extends StatelessWidget {
           cart.addItemToCart(shoe); // Adiciona o sapato ao carrinho
           showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Successfully added!'),
-              content: Text('Check your cart'),
-            ),
+            builder: (context) => AlertAddedToCart(),
           );
         },
         child: Container(
-          margin: EdgeInsets.only(top: 46),
+          margin: EdgeInsets.only(top: 20),
           width: 400,
           height: 60,
           decoration: BoxDecoration(
@@ -37,7 +36,7 @@ class ButtonAddToCartDescription extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Icon(
-                    Icons.shop_sharp,
+                    Icons.shopping_cart,
                     color: Colors.white,
                     size: 26,
                   ),
@@ -58,3 +57,4 @@ class ButtonAddToCartDescription extends StatelessWidget {
     );
   }
 }
+

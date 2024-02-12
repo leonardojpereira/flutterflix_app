@@ -21,7 +21,7 @@ class _DescriptionState extends State<Description> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18),
       child: Text(
-        'Lorem ipsum dolor sit amet. Et praesentium architecto vel provident exercitationem et nihil nostrum et obcaecati sint. Cum laborum magnam aut quia optio sed minima quis.',
+        'Lorem ipsum dolor sit amet. Et praesentium architecto vel provident exercitationem et nihil nostrum et obcaecati sint. Cum laborum magnam aut quia optio sed minima quis. Lorem ipsum dolor sit amet. Et praesentium architecto vel.Cum laborum magnam aut quia optio sed minima quis. Lorem ipsum dolor sit amet. Et praesentium architecto vel.',
         style: TextStyle(height: 1.5),
       ),
     );
