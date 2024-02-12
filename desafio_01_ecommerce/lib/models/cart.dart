@@ -7,33 +7,38 @@ class Cart extends ChangeNotifier {
       name: 'Air Max 270',
       price: '236',
       imagePath: "lib/images/air_max_270_react_0.png",
+      size: '6.5',
       description: 'The forward-thinking design of his latest signature shoe.',
     ),
     Shoe(
-      name: 'Air Jordan Low',
+      name: 'Jordan Mid',
       price: '350',
       imagePath: 'lib/images/nike8.png',
+      size: '9',
       description:
           'You\'ve got the hops and the speed-lace up in shoes that enhance the best.',
     ),
     Shoe(
-      name: 'Revolution 7',
+      name: 'Speed Rival',
       price: '400',
       imagePath: 'lib/images/nike2.png',
+      size: '7.5',
       description:
           'You\'ve got the hops and the speed-lace up in shoes that enhance the best.',
     ),
     Shoe(
-      name: 'Air Max React',
+      name: 'LunarGlide',
       price: '350',
       imagePath: 'lib/images/nike1.png',
+      size: '8',
       description:
           'Step into greatness with Jordan: Elevate your style, embrace your passion, and soar above the rest.',
     ),
     Shoe(
-      name: 'Air Jordan GS',
-      price: '800',
+      name: 'Jordan Low',
+      price: '400',
       imagePath: 'lib/images/nike7.png',
+      size: '10',
       description:
           'The Air Jordan 1 Alternate Black Royal GS was a addition to the catalog of the American sport and lifestyle brand',
     )

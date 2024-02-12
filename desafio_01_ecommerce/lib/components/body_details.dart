@@ -44,7 +44,7 @@ class BodyDetails extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.grey[700], fontSize: 18)),
                               TextSpan(
-                                  text: '42',
+                                  text: shoe.size,
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 26,

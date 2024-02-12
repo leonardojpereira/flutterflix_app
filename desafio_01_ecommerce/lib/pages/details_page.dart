@@ -35,7 +35,10 @@ class _ShoeDetailsPageState extends State<ShoeDetailsPage> {
                 builder: (context) => CartPage()
               ),
             ),
-            child: Icon(Icons.shopping_cart, color: Colors.white,),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: Icon(Icons.shopping_cart, color: Colors.white,),
+            ),
           )
           // IconButton(
           //     onPressed: () => Navigator.push(

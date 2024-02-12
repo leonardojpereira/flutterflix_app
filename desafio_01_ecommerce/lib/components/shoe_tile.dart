@@ -42,7 +42,14 @@ class ShoeTile extends StatelessWidget {
             
                   SizedBox(height: 5),
             
-                  Text('\$' + shoe.price, style: TextStyle(color: Colors.grey),)],
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 60,
+                        child: Text('\$' + shoe.price, style: TextStyle(color: Colors.grey),)),
+                      Text('Size: ${shoe.size}', style: TextStyle(color: Colors.grey),)
+                    ],
+                  )],
                 ),
                 GestureDetector(
                   onTap: onTap,

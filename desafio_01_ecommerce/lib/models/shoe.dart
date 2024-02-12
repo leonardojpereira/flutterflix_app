@@ -3,6 +3,7 @@ class Shoe {
   final String price;
   final String imagePath;
   final String description;
+  final String size;
   int quantity;
 
   Shoe({
@@ -10,6 +11,7 @@ class Shoe {
     required this.price,
     required this.imagePath,
     required this.description,
+    required this.size,
     this.quantity = 0,
   });
 }
