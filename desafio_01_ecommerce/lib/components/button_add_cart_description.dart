@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_05_ecommerce/components/alert_added_to_cart.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
-import 'package:flutter_05_ecommerce/pages/cart_page.dart';
 import 'package:provider/provider.dart';
 
 class ButtonAddToCartDescription extends StatelessWidget {
@@ -18,14 +18,7 @@ class ButtonAddToCartDescription extends StatelessWidget {
           cart.addItemToCart(shoe); // Adiciona o sapato ao carrinho
           showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Successfully added!'),
-              content: InkWell(
-                child: Text('Check your cart'),
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartPage())),
-              ),
-            ),
+            builder: (context) => AlertAddedToCart(),
           );
         },
         child: Container(
@@ -64,3 +57,4 @@ class ButtonAddToCartDescription extends StatelessWidget {
     );
   }
 }
+

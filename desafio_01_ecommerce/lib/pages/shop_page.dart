@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_05_ecommerce/components/alert_added_to_cart.dart';
 import 'package:flutter_05_ecommerce/components/shoe_tile.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
@@ -29,17 +30,17 @@ class _ShopPageState extends State<ShopPage> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Successfully added!'),
-        content: Text('Check your cart'),
-      ),
+      builder: (context) => AlertAddedToCart()
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.grey[200],
+      ),
       body: Consumer<Cart>(
         builder: (context, value, child) => Column(
           children: [
@@ -47,7 +48,7 @@ class _ShopPageState extends State<ShopPage> {
               padding: EdgeInsets.all(12),
               margin: EdgeInsets.symmetric(horizontal: 25),
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

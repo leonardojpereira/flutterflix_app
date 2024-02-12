@@ -20,7 +20,7 @@ class _CartItemState extends State<CartItem> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: Colors.white,
             borderRadius: BorderRadius.circular(8),
           ),
           margin: const EdgeInsets.only(bottom: 10),
