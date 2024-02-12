@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_05_ecommerce/components/button_add_cart_description.dart';
-import 'package:flutter_05_ecommerce/components/cart_counter.dart';
 import 'package:flutter_05_ecommerce/components/favorite_button.dart';
 import 'package:flutter_05_ecommerce/components/shoe_description.dart';
 import 'package:flutter_05_ecommerce/components/shoe_title_width_image.dart';
@@ -35,33 +34,31 @@ class BodyDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Row(
-                        children: [
-                          RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: 'Size\n',
-                                style: TextStyle(
-                                    color: Colors.grey[700], fontSize: 18)),
-                            TextSpan(
-                                text: '42',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.bold))
-                          ])),
-                        ],
-                      ),
-                      Description(shoe: shoe),
-                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CartCounter(),
+                          Container(
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: 'Size\n',
+                                  style: TextStyle(
+                                      color: Colors.grey[700], fontSize: 18)),
+                              TextSpan(
+                                  text: shoe.size,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold))
+                            ])),
+                          ),
                           FavoriteButton(),
                         ],
                       ),
-                      ButtonAddToCartDescription(shoe: shoe,)
+                      Description(shoe: shoe),
+                      ButtonAddToCartDescription(
+                        shoe: shoe,
+                      )
                     ],
-                    
                   ),
                 ),
                 ShoeTitleWidthImage(shoe: shoe)
@@ -73,4 +70,3 @@ class BodyDetails extends StatelessWidget {
     );
   }
 }
-
