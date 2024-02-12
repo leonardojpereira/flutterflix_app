@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
+import 'package:flutter_05_ecommerce/pages/cart_page.dart';
 import 'package:provider/provider.dart';
 
 class ButtonAddToCartDescription extends StatelessWidget {
@@ -19,7 +20,11 @@ class ButtonAddToCartDescription extends StatelessWidget {
             context: context,
             builder: (context) => AlertDialog(
               title: Text('Successfully added!'),
-              content: Text('Check your cart'),
+              content: InkWell(
+                child: Text('Check your cart'),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartPage())),
+              ),
             ),
           );
         },

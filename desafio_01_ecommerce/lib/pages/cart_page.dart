@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_05_ecommerce/components/cart_item.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
-import 'package:flutter_05_ecommerce/models/shoe.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {

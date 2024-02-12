@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_05_ecommerce/components/drawer.dart';
 import 'package:flutter_05_ecommerce/components/shoe_tile.dart';
 import 'package:flutter_05_ecommerce/models/cart.dart';
 import 'package:flutter_05_ecommerce/models/shoe.dart';
@@ -40,19 +39,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      drawer: DrawerWidget(),
+      appBar: AppBar(),
       body: Consumer<Cart>(
         builder: (context, value, child) => Column(
           children: [

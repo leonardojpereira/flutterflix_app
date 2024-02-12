@@ -32,9 +32,7 @@ class _ShoeDetailsPageState extends State<ShoeDetailsPage> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) {
-                  return const CartPage();
-                },
+                builder: (context) => CartPage()
               ),
             ),
             child: Icon(Icons.shopping_cart, color: Colors.white,),
