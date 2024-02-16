@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           filterQuality: FilterQuality.high,
         ),
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -46,6 +46,25 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 22.0, top: 12.0),
+                child: SearchBar(
+                  textStyle: MaterialStateProperty.all(
+                      const TextStyle(color: Colors.black)),
+                  hintText: 'Search',
+                  hintStyle: MaterialStateProperty.all(
+                      const TextStyle(color: Color.fromARGB(255, 88, 88, 88))),
+                  leading: Icon(
+                    Icons.search,
+                    color: Colors.grey[700],
+                  ),
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  shape:
+                      MaterialStateProperty.all(const ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  )),
+                ),
+              ),
               const Padding(
                 padding: EdgeInsets.only(top: 22, bottom: 22),
                 child: Text(
@@ -75,10 +94,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 26,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: const Text('Top rated movies',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text('Top rated movies',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
               ),
               SizedBox(
                 child: FutureBuilder(
@@ -102,10 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 26,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: const Text('Upcoming movies',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text('Upcoming movies',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
               ),
               SizedBox(
                 child: FutureBuilder(
