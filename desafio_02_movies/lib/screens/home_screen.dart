@@ -1,3 +1,4 @@
+import 'package:desafio_02_movies/components/drawer.dart';
 import 'package:desafio_02_movies/components/movie_slider.dart';
 import 'package:desafio_02_movies/components/popular_movie_slider.dart';
 import 'package:desafio_02_movies/models/movie.dart';
@@ -37,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           filterQuality: FilterQuality.high,
         ),
       ),
+      drawer: DrawerWidget(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
