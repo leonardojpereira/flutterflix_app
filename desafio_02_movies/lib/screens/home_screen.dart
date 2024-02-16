@@ -13,11 +13,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Movie>> popularMovies;
+  late Future<List<Movie>> topRatedMovies;
+  late Future<List<Movie>> upcomingMovies;
 
   @override
   void initState() {
     super.initState();
     popularMovies = Api().getPopularMovies();
+    topRatedMovies = Api().getTopRatedMovies();
+    upcomingMovies = Api().getupcomingMovies();
   }
 
   @override
@@ -52,26 +56,74 @@ class _HomeScreenState extends State<HomeScreen> {
                     future: popularMovies,
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
-                        return Center(child: Text(snapshot.error.toString()),);
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
                       } else if (snapshot.hasData) {
-                        return PopularMovieSlider(snapshot: snapshot,);
+                        return PopularMovieSlider(
+                          snapshot: snapshot,
+                        );
                       } else {
-                        return const Center(child: CircularProgressIndicator(),);
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
                     }),
               ),
               const SizedBox(
                 height: 26,
               ),
-              const Text('Top rated movies',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              const MovieSlider(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: const Text('Top rated movies',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                    future: topRatedMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return MovieSlider(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
               const SizedBox(
                 height: 26,
               ),
-             const Text('Upcoming movies',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              const MovieSlider(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: const Text('Upcoming movies',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                    future: upcomingMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return MovieSlider(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
             ],
           ),
         ),
