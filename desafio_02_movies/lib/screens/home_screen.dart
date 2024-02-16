@@ -1,9 +1,28 @@
 import 'package:desafio_02_movies/components/movie_slider.dart';
 import 'package:desafio_02_movies/components/popular_movie_slider.dart';
+import 'package:desafio_02_movies/models/movie.dart';
+import 'package:desafio_02_movies/services/api.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Future<List<Movie>> popularMovies;
+  late Future<List<Movie>> topRatedMovies;
+  late Future<List<Movie>> upcomingMovies;
+
+  @override
+  void initState() {
+    super.initState();
+    popularMovies = Api().getPopularMovies();
+    topRatedMovies = Api().getTopRatedMovies();
+    upcomingMovies = Api().getupcomingMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,33 +37,93 @@ class HomeScreen extends StatelessWidget {
           filterQuality: FilterQuality.high,
         ),
       ),
-      body: const SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.only(left: 22, bottom: 22),
+          padding: const EdgeInsets.only(left: 22, bottom: 22),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 22, bottom: 22),
                 child: Text(
                   'Popular Movies',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
-              PopularMovieSlider(),
               SizedBox(
+                child: FutureBuilder(
+                    future: popularMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return PopularMovieSlider(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
+              const SizedBox(
                 height: 26,
               ),
-              Text('Top rated movies',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              MovieSlider(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: const Text('Top rated movies',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              ),
               SizedBox(
+                child: FutureBuilder(
+                    future: topRatedMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return MovieSlider(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
+              const SizedBox(
                 height: 26,
               ),
-              Text('Upcoming movies',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-              MovieSlider(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: const Text('Upcoming movies',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              ),
+              SizedBox(
+                child: FutureBuilder(
+                    future: upcomingMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return MovieSlider(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
             ],
           ),
         ),
@@ -52,4 +131,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
