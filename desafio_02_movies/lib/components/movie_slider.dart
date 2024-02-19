@@ -1,4 +1,5 @@
 import 'package:desafio_02_movies/constants.dart';
+import 'package:desafio_02_movies/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
@@ -21,15 +22,26 @@ class MovieSlider extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: SizedBox(
-                width: 150,
-                height: 200,
-                child: Image.network(
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover,
-                    '${Constants.imagePath}${snapshot.data![index].posterPath}'),
+            child: GestureDetector(
+              onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DetailsScreen(movie: snapshot.data[index]),
+                ),
+              );
+            },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: 150,
+                  height: 200,
+                  child: Image.network(
+                      filterQuality: FilterQuality.high,
+                      fit: BoxFit.cover,
+                      '${Constants.imagePath}${snapshot.data![index].posterPath}'),
+                ),
               ),
             ),
           );
