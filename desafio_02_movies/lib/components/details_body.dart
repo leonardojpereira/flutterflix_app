@@ -6,21 +6,48 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailsBody extends StatelessWidget {
   const DetailsBody({
-    super.key,
+    Key? key,
     required this.movie,
-  });
+    required this.isFavorite,
+    required this.toggleFavoriteStatus,
+  }) : super(key: key);
 
   final Movie movie;
+  final bool isFavorite;
+  final VoidCallback toggleFavoriteStatus;
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar.large(
+        SliverAppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_sharp),
             onPressed: () => Navigator.pop(context),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                toggleFavoriteStatus();
+                final snackBar = SnackBar(
+                  backgroundColor: Colours.snackbarColor,
+                  content: Text(
+                    isFavorite
+                        ? 'Movie removed from favorites!'
+                        : 'Movie added to favorites!',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  duration: Duration(seconds: 2), 
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              icon: Icon(
+                isFavorite ? Icons.star : Icons.star_border,
+                color: Colors.yellow,
+                size: 36,
+              ),
+            )
+          ],
           backgroundColor: Colours.scaffoldBgColor,
           expandedHeight: 500,
           pinned: true,
@@ -31,17 +58,20 @@ class DetailsBody extends StatelessWidget {
               padding: const EdgeInsets.only(right: 50.0),
               child: Text(
                 movie.title,
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17,
+                ),
               ),
             ),
             background: ClipRRect(
               borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(22),
-                  bottomRight: Radius.circular(22)),
+                bottomLeft: Radius.circular(22),
+                bottomRight: Radius.circular(22),
+              ),
               child: ColorFiltered(
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.5), //
+                  Colors.black.withOpacity(0.5),
                   BlendMode.darken,
                 ),
                 child: Image.network(
@@ -67,18 +97,15 @@ class DetailsBody extends StatelessWidget {
                       const Text(
                         'Overview',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 26),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 26,
+                        ),
                       ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.star_border_sharp,
-                            size: 38,
-                            color: Colors.yellow,
-                          ))
                     ],
+                  ),
+                   const SizedBox(
+                    height: 6,
                   ),
                   Text(
                     textAlign: TextAlign.justify,
@@ -95,36 +122,41 @@ class DetailsBody extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Row(children: [
-                          RatingBar.builder(
-                            initialRating: movie.voteAvarage / 2,
-                            minRating: 0,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemSize: 26,
-                            itemPadding:
-                                const EdgeInsets.symmetric(horizontal: 2.0),
-                            itemBuilder: (context, index) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
+                        child: Row(
+                          children: [
+                            RatingBar.builder(
+                              initialRating: movie.voteAvarage / 2,
+                              minRating: 0,
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemSize: 26,
+                              ignoreGestures: true,
+                              itemPadding:
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
+                              itemBuilder: (context, index) => const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              onRatingUpdate: (rating) {
+                                print(rating);
+                              },
                             ),
-                            onRatingUpdate: (rating) {
-                              print(rating);
-                            },
-                          ),
-                        ]),
+                          ],
+                        ),
                       ),
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.grey[800],
+                          color: Colours.secondaryColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
                           'Release: ${movie.releaseDate}',
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
