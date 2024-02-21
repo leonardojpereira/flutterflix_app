@@ -1,5 +1,5 @@
 import 'package:desafio_02_movies/colors.dart';
-import 'package:desafio_02_movies/screens/home_screen.dart';
+import 'package:desafio_02_movies/screens/intro_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,11 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
        theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colours.scaffoldBgColor,
       ),
-      home: const HomeScreen(),
+      home: const IntroScreen(),
     );
   }
 }

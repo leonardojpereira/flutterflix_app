@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:desafio_02_movies/constants.dart';
+import 'package:desafio_02_movies/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class PopularMovieSlider extends StatelessWidget {
@@ -26,15 +27,26 @@ class PopularMovieSlider extends StatelessWidget {
           autoPlayAnimationDuration: const Duration(seconds: 1),
         ),
         itemBuilder: (context, itemIndex, pageViewIndex) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: SizedBox(
-              width: 300,
-              height: 200,
-              child: Image.network(
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
-                  '${Constants.imagePath}${snapshot.data[itemIndex].posterPath}'),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DetailsScreen(movie: snapshot.data[itemIndex]),
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                width: 300,
+                height: 200,
+                child: Image.network(
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                    '${Constants.imagePath}${snapshot.data[itemIndex].posterPath}'),
+              ),
             ),
           );
         },
