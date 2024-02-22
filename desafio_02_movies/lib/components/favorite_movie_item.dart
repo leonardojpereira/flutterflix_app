@@ -74,7 +74,7 @@ class _FavoriteMovieItemState extends State<FavoriteMovieItem> {
         color: Colors.white,
         onRefresh: _handleRefresh,
         child: Padding(
-          padding: const EdgeInsets.only(left: 18, top: 18, right: 18),
+          padding: const EdgeInsets.only(left: 18),
           child: _isRefreshing
               ? Center(child: CircularProgressIndicator())
               : favoriteMovies.isEmpty
@@ -112,102 +112,106 @@ class _FavoriteMovieItemState extends State<FavoriteMovieItem> {
                         ],
                       ),
                     )
-                  : ListView.builder(
-                      itemCount: favoriteMovies.length,
-                      itemBuilder: (context, index) {
-                        Movie movie = favoriteMovies[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 22.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 12.0),
-                                child: GestureDetector(
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetailsScreen(movie: movie)),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(8)),
-                                    child: Image.network(
-                                      '${Constants.imagePath}${movie.posterPath}',
-                                      width: 100,
+                  : 
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 22.0),
+                    child: ListView.builder(
+                        itemCount: favoriteMovies.length,
+                        itemBuilder: (context, index) {
+                          Movie movie = favoriteMovies[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 22.0,),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 12.0),
+                                  child: GestureDetector(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              DetailsScreen(movie: movie)),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(8)),
+                                      child: Image.network(
+                                        '${Constants.imagePath}${movie.posterPath}',
+                                        width: 100,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: 230,
-                                    child: Text(
-                                      movie.title,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 22),
-                                    ),
-                                  ),
-                                  Text(
-                                    movie.releaseDate,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  Row(
-                                    children: [
-                                      RatingBar.builder(
-                                        initialRating: movie.voteAvarage / 2,
-                                        minRating: 0,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 24,
-                                        ignoreGestures: true,
-                                        itemPadding: const EdgeInsets.symmetric(
-                                            horizontal: 0.0),
-                                        itemBuilder: (context, index) =>
-                                            const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: 250,
+                                      child: Text(
+                                        movie.title,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 22),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 70.0, bottom: 0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colours.secondaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(50)),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              removeFavoriteMovie(
-                                                  movie.id.toString());
-                                            },
-                                            icon: const Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
+                                    ),
+                                    Text(
+                                      movie.releaseDate,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                    Row(
+                                      children: [
+                                        RatingBar.builder(
+                                          initialRating: movie.voteAvarage / 2,
+                                          minRating: 0,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemSize: 24,
+                                          ignoreGestures: true,
+                                          itemPadding: const EdgeInsets.symmetric(
+                                              horizontal: 0.0),
+                                          itemBuilder: (context, index) =>
+                                              const Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 70.0, bottom: 0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colours.secondaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(50)),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                removeFavoriteMovie(
+                                                    movie.id.toString());
+                                              },
+                                              icon: const Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                  ),
         ),
       ),
     );
