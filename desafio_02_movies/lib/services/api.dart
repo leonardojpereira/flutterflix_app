@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:desafio_02_movies/constants.dart';
 import 'package:desafio_02_movies/models/movie.dart';
 import 'package:http/http.dart' as http;
@@ -31,47 +30,62 @@ class Api {
       upcomingMoviesFuture,
     ]);
 
-    // Combine all lists of movies into a single list
     return results.expand((movies) => movies).toList();
   }
 
   Future<List<Movie>> _fetchMovies(String path) async {
-    final response = await http.get(Uri.parse('$_baseUrl$path'));
-    if (response.statusCode == 200) {
-      final decodedData = json.decode(response.body)['results'] as List;
-      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
-    } else {
-      throw Exception('Failed to load movies');
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl$path'));
+      if (response.statusCode == 200) {
+        final decodedData = json.decode(response.body)['results'] as List;
+        return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+      } else {
+        throw Exception('Something happened');
+      }
+    } catch (e) {
+      throw Exception('Failed to load movies: $e');
     }
   }
 
   Future<List<Movie>> getPopularMovies() async {
-    final response = await http.get(Uri.parse(_popularUrl));
-    if (response.statusCode == 200) {
-      final decodedData = json.decode(response.body)['results'] as List;
-      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
-    } else {
-      throw Exception('Something happened.');
+    try {
+      final response = await http.get(Uri.parse(_popularUrl));
+      if (response.statusCode == 200) {
+        final decodedData = json.decode(response.body)['results'] as List;
+        return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+      } else {
+        throw Exception('Something happened.');
+      }
+    } catch (e) {
+      throw Exception('Failed to load movies: $e');
     }
   }
 
   Future<List<Movie>> getTopRatedMovies() async {
-    final response = await http.get(Uri.parse(_topRatedUrl));
-    if (response.statusCode == 200) {
-      final decodedData = json.decode(response.body)['results'] as List;
-      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
-    } else {
-      throw Exception('Something happened.');
+    try {
+      final response = await http.get(Uri.parse(_topRatedUrl));
+      if (response.statusCode == 200) {
+        final decodedData = json.decode(response.body)['results'] as List;
+        return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+      } else {
+        throw Exception('Something happened.');
+      }
+    } catch (e) {
+      throw Exception('Failed to load movies: $e');
     }
   }
 
-  Future<List<Movie>> getupcomingMovies() async {
-    final response = await http.get(Uri.parse(_upcomingUrl));
-    if (response.statusCode == 200) {
-      final decodedData = json.decode(response.body)['results'] as List;
-      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
-    } else {
-      throw Exception('Something happened.');
+  Future<List<Movie>> getUpComingMovies() async {
+    try {
+      final response = await http.get(Uri.parse(_upcomingUrl));
+      if (response.statusCode == 200) {
+        final decodedData = json.decode(response.body)['results'] as List;
+        return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+      } else {
+        throw Exception('Something happened.');
+      }
+    } catch (e) {
+      throw Exception('Failed to load movies: $e');
     }
   }
 }
