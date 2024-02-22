@@ -146,7 +146,7 @@ class _FavoriteMovieItemState extends State<FavoriteMovieItem> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    width: 250,
+                                    width: 230,
                                     child: Text(
                                       movie.title,
                                       style: const TextStyle(

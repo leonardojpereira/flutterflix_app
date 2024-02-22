@@ -23,7 +23,7 @@ class _HomeBodyState extends State<HomeBody> {
     super.initState();
     popularMovies = Api().getPopularMovies();
     topRatedMovies = Api().getTopRatedMovies();
-    upcomingMovies = Api().getupcomingMovies();
+    upcomingMovies = Api().getUpComingMovies();
   }
 
   Future<void> searchMovies(String query) async {
