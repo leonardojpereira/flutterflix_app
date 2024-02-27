@@ -18,7 +18,7 @@ class _HomeBodyState extends State<HomeBody> {
   late final ValueNotifier<MovieController> movieControllerNotifier;
   final TextEditingController searchController = TextEditingController();
   final FocusNode searchFocusNode = FocusNode();
-  
+
   bool isSearching = false;
   List<Movie> searchedMovies = [];
   List<Movie> filteredMovies = [];
@@ -96,9 +96,10 @@ class _HomeBodyState extends State<HomeBody> {
                 valueListenable: movieControllerNotifier,
                 builder: (context, movieController, _) {
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (isSearching) ...[
-                        _buildSearchWidget(),
+                        _buildSearchWidget(searchController.text),
                       ],
                       if (!isSearching) ...[
                         const SizedBox(height: 26),
@@ -137,12 +138,12 @@ class _HomeBodyState extends State<HomeBody> {
           title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 26,
           ),
         ),
       );
 
-  Widget _buildSearchWidget() {
+  Widget _buildSearchWidget(String searchMovies) {
     return FutureBuilder<List<Movie>>(
       future: movieControllerNotifier.value.getAllMovies(),
       builder: (context, snapshot) {
@@ -159,20 +160,36 @@ class _HomeBodyState extends State<HomeBody> {
         }
         if (snapshot.hasData) {
           List<Movie> movies = snapshot.data!;
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 22, bottom: 22),
-                child: Text(
-                  'Results: ${movies.length}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                  ),
-                ),
+          Set<int> addedMovieIds = Set<int>();
+          List<Movie> searchedMoviesList = [];
+
+          for (Movie movie in movies) {
+            if (!addedMovieIds.contains(movie.id) &&
+                movie.title
+                    .toLowerCase()
+                    .contains(searchMovies.toLowerCase())) {
+              searchedMoviesList.add(movie);
+              addedMovieIds.add(movie.id);
+            }
+          }
+
+          if (searchedMoviesList.isNotEmpty) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 22.0),
+              child: _buildMovieWidget(
+                Future.value(searchedMoviesList),
+                false,
               ),
-            ],
-          );
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(top: 22.0),
+              child: const Text(
+                'Nenhum filme encontrado',
+                style: TextStyle(fontSize: 22),
+              ),
+            );
+          }
         }
         return const Text('Sem dados disponíveis');
       },
