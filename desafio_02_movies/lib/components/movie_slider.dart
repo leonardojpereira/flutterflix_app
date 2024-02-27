@@ -1,14 +1,15 @@
-import 'package:desafio_02_movies/constants.dart';
-import 'package:desafio_02_movies/screens/details_screen.dart';
+import 'package:desafio_02_movies/core/singletons/utils/constants.dart';
+import 'package:desafio_02_movies/modules/movies/models/movie.dart';
+import 'package:desafio_02_movies/modules/movies/pages/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
   const MovieSlider({
     super.key,
-    required this.snapshot,
+    required this.movie,
   });
 
-  final AsyncSnapshot snapshot;
+  final List<Movie> movie;
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +19,19 @@ class MovieSlider extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
-        itemCount: snapshot.data.length,
+        itemCount: movie.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      DetailsScreen(movie: snapshot.data[index]),
-                ),
-              );
-            },
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsScreen(movie: movie[index]),
+                  ),
+                );
+              },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: SizedBox(
@@ -40,7 +40,7 @@ class MovieSlider extends StatelessWidget {
                   child: Image.network(
                       filterQuality: FilterQuality.high,
                       fit: BoxFit.cover,
-                      '${Constants.imagePath}${snapshot.data![index].posterPath}'),
+                      '${Constants.imagePath}${movie[index].posterPath}'),
                 ),
               ),
             ),

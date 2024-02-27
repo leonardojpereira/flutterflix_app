@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:desafio_02_movies/constants.dart';
-import 'package:desafio_02_movies/models/movie.dart';
+
+import 'package:desafio_02_movies/core/singletons/singletons.dart';
+import 'package:desafio_02_movies/modules/movies/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
