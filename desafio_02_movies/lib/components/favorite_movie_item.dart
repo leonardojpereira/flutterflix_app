@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:desafio_02_movies/colors.dart';
-import 'package:desafio_02_movies/constants.dart';
-import 'package:desafio_02_movies/models/movie.dart';
-import 'package:desafio_02_movies/screens/details_screen.dart';
+import 'package:desafio_02_movies/core/singletons/colors.dart';
+import 'package:desafio_02_movies/core/singletons/utils/constants.dart';
+import 'package:desafio_02_movies/modules/movies/models/movie.dart';
+import 'package:desafio_02_movies/modules/movies/pages/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
