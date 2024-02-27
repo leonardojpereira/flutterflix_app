@@ -1,4 +1,4 @@
-import 'package:desafio_02_movies/screens/home_screen.dart';
+import 'package:desafio_02_movies/modules/movies/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async'; 
 
