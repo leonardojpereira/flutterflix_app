@@ -1,20 +1,56 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+![image](https://github.com/leonardojpereira/movie_app_flutter/assets/87662269/1a4501fd-0317-4394-877b-6979e3b8745c)
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+<h1 align="center">
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+ Movie App - FLUTTERFLIX 🎥
+</h1>
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+<h2>
+  :pencil: Descrição do projeto
+</h2>
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+<p>
+Um app que exibe os filmes populares, mais bem avaliados e que serão lançados em breve. Para pegar as informações dos filmes, consumi a API TheMovieDB, utilizando o pacote ``http`` para fazer a requisição.
+</p>
+
+### Conceitos importantes utilizados no projeto: 
+1. Timer Widget (Para navegar de uma tela para outra após um determinado tempo);
+3. HTTP Requests (Consumindo a TheMovieDB API);
+4. Factory Constructor;
+5. Persistência de dados (Shared Preferences);
+6. Exceptions (Tratamento de erros utilizando try e catch);
+   
+## 🛠️ Feito com
+* [Visual Studio Code](https://code.visualstudio.com) - Coding Editor
+
+## 💻 Tecnologias utilizadas
+-  <img align="center" alt="logo_react" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"> **Flutter**: Um poderoso framework mutiplataforma criado para construir interfaces de usuário (UI) nativas para iOS, Android, web e desktop usando a linguagem Dart.
+  
+## :electric_plug: Instalação e Uso
+
+Siga as instruções abaixo para instalar e executar o projeto em sua máquina:
+
+1. Execute o comando no seu terminal para clonar o repositório:
+   
+   ```git clone https://github.com/leonardojpereira/todolist-flutter```
+   
+3. Navegue até o diretório do projeto e execute:
+   
+   ``cd seu-diretorio``
+   ``flutter pub get``
+   
+5. Utilize o seguinte comando para iniciar o aplicativo:
+   
+   ``flutter run``
+
+## Observação
+
+- Certifique-se de ter o ambiente Flutter configurado corretamente. Para mais informações sobre a configuração do ambiente Flutter, consulte a documentação oficial abaixo:
+
+``https://flutter.dev/``
+  
+⌨️ with ❤️ by [Leonardo Barbosa](https://github.com/leonardojpereira) 😊
+
+<h3 align="center">
+  
+  :construction: PROJETO FINALIZADO :construction:
