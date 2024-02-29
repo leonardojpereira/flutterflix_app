@@ -30,7 +30,7 @@ Siga as instruções abaixo para instalar e executar o projeto em sua máquina:
 
 1. Execute o comando no seu terminal para clonar o repositório:
    
-   ```git clone https://github.com/leonardojpereira/todolist-flutter```
+   ```git clone https://github.com/leonardojpereira/flutterflix_app```
    
 3. Navegue até o diretório do projeto e execute:
    
