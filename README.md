@@ -1,5 +1,3 @@
-![image](https://github.com/leonardojpereira/movie_app_flutter/assets/87662269/1a4501fd-0317-4394-877b-6979e3b8745c)
-
 <h1 align="center">
 
  Movie App - FLUTTERFLIX 🎥
